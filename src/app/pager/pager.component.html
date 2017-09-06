@@ -1,0 +1,41 @@
+<div class="row">
+
+  <div class="col-md-3">
+    <p class="pull-left">Showing
+      {{skip}}-
+      <span *ngIf="limit <= allItemsCount">{{skip + limit}}</span>
+      <span *ngIf="limit > allItemsCount"> {{allItemsCount}} </span> of {{allItemsCount}}</p>
+  </div>
+
+  <div class="col-md-7">
+
+    <nav aria-label="Page navigation example">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+          <a class="page-link" (click)="setPage(1)">First</a>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+          <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a class="page-link" (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="pull-right col-md-2">
+    <select [(ngModel)]="itemsPerPage" name="perPage" class="form-control"
+            (ngModelChange)="setItemsPerPage(itemsPerPage)">
+      <option *ngFor="let count of PER_PAGE_ITEMS" [value]="count">{{count}}</option>
+    </select>
+  </div>
+
+</div>

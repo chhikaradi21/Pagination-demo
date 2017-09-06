@@ -1,0 +1,42 @@
+<!-- Pagination demo -->
+<div class="col-md-10 offset-md-1" id="pagination">
+
+  <div class="col-md-12 text-center" style="margin-top: 100px; margin-bottom : 50px">
+    <h1><span class="badge badge-default"> AngularJS 4 Pagination </span></h1>
+  </div>
+
+  <div class="jumbotron color-theme-default">
+    <h1>AngularJS 4 Pagination</h1>
+    <a href="https://github.com/chhikaradi21/pagination-demo" class="card-link" target="_blank">See On Github</a>
+    <hr class="my-4">
+    <p class="lead">
+      This can be used as a pagination component on tables.
+      This is written using AngularJS 4 and can also reset items per page.
+    </p>
+
+    <app-pager [callbackPager]="callbackPager.bind(this)" [skip]="this.skip" [limit]="this.limit"></app-pager>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th (click)="setFieldNameSort('name')"><span class="font-color-water-blue"
+                                                     style="cursor: pointer"><u>Name</u></span></th>
+        <th (click)="setFieldNameSort('city')"><span class="font-color-water-blue"
+                                                     style="cursor: pointer"><u>City</u></span></th>
+        <th (click)="setFieldNameSort('mobile')"><span class="font-color-water-blue"
+                                                       style="cursor: pointer"><u>Mobile</u></span></th>
+        <th (click)="setFieldNameSort('age')"><span class="font-color-water-blue"
+                                                    style="cursor: pointer"><u>Age</u></span></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of pagerSelectedData">
+        <td>{{item.name}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
