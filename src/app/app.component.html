@@ -8,25 +8,22 @@
   <div class="jumbotron color-theme-default">
     <h1>AngularJS 4 Pagination</h1>
     <a href="https://github.com/chhikaradi21/pagination-demo" class="card-link" target="_blank">See On Github</a>
-    <hr class="my-4">
     <p class="lead">
       This can be used as a pagination component on tables.
       This is written using AngularJS 4 and can also reset items per page.
     </p>
+
+    <hr class="my-4">
 
     <app-pager [callbackPager]="callbackPager.bind(this)" [skip]="this.skip" [limit]="this.limit"></app-pager>
 
     <table class="table">
       <thead>
       <tr>
-        <th (click)="setFieldNameSort('name')"><span class="font-color-water-blue"
-                                                     style="cursor: pointer"><u>Name</u></span></th>
-        <th (click)="setFieldNameSort('city')"><span class="font-color-water-blue"
-                                                     style="cursor: pointer"><u>City</u></span></th>
-        <th (click)="setFieldNameSort('mobile')"><span class="font-color-water-blue"
-                                                       style="cursor: pointer"><u>Mobile</u></span></th>
-        <th (click)="setFieldNameSort('age')"><span class="font-color-water-blue"
-                                                    style="cursor: pointer"><u>Age</u></span></th>
+        <th (click)="setFieldNameSort('name')">Name</th>
+        <th (click)="setFieldNameSort('city')">City</th>
+        <th (click)="setFieldNameSort('mobile')">Mobile</th>
+        <th (click)="setFieldNameSort('age')">Age</th>
       </tr>
       </thead>
       <tbody>
