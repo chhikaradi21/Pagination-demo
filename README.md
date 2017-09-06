@@ -1,28 +1,58 @@
-# PaginationDemo
+# AngularJS 4 Pagination Component
+This Pagination component is written in AngularJS 4 and can be used to manage multiple pages in an HTML table. You can set items per page variable easily using dropdown. Because this is written as a component so its JS and HTML code is included in the component, so no need to include HTML template separately.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
+### Features
+1. THis can be used with tables having data data devided among multiple pages.
+2. Items per page limit can be reset easily using dropdown.
+3. Show selected items out of total items like(Showing 0 - 5 of 50).
 
-## Development server
+### How it works?
+You have to initialize pager component after loading data on page load like
+```
+this.pager.setPageHelper(this.page, this.allItemsCount, this.itemsPerPage); // initialize on page load.
+```
+And initialize the following data in your component in which you are using this component like
+```
+allItemsCount : any = 0;
+itemsPerPage : any = 5;
+page : any = 1;
+skip = 0;
+limit = this.itemsPerPage;
+callbackPager(page, itemsPerPage){
+    this.itemsPerPage = itemsPerPage;
+    this.skip = (page - 1) * this.itemsPerPage || 0;
+    this.limit = this.allItemsCount - this.skip >= this.itemsPerPage ? this.itemsPerPage : this.allItemsCount - this.skip;
+    this.page = page;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    this.getPagerData(this.skip, this.limit);
+}
+```
+Pager component in HTML file
+callbackPager - You have to pass a callback function which will be called when someone click on next/previous pages on pagination template.
+skip - initial value(eg. 0)
+limit - initial value(eg. 5 or 10)
+```
+<app-pager [callbackPager]="callbackPager.bind(this)" [skip]="this.skip" [limit]="this.limit"></app-pager>
+```
+Its done after this pager component is responsible for everything.
 
-## Code scaffolding
+Usage:
+```
+*ngFor="let item of dataArr | sort : selectedField"
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```
+### How to run on local
+Follow these steps
+1. git clone git@github.com:chhikaradi21/pagination-demo.git
+2. cd pagination-demo
+3. npm install(using node version 6)
+4. ng serve
+5. Access in browser at port 4200 (localhost:4200)
 
-## Build
+### Working Demo
+<a href="http://adityachhikara.me/github-demos?block=pagination" target="_blank">See Pagination Demo</a>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
+2. Node version 6
